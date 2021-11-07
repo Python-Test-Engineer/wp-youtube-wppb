@@ -1,0 +1,130 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700;800&display=swap');
+
+/* To avoid affecting rest of admin area, ensure CSS targets specific elements */
+#event-enter-form {
+	background: linen;
+	padding: 10px 20px 20px 20px;
+	border: 2px solid purple;
+	border-radius: 10px;
+	margin-top: 30px;
+	font-family: 'Raleway';
+}
+
+#event-enter-form input {
+	font-size: 22px;
+	padding: 5px 10px;
+	font-family: 'Raleway';
+}
+
+#event-enter-form label {
+	font-size: 22px;
+	font-family: 'Raleway';
+}
+#event-name {
+	width: 500px;
+}
+#event-enter-form .table-events td,
+#event-enter-form .table-events th,
+#table_events td,
+#table_events th {
+	font-size: 18px;
+	font-family: 'Raleway';
+}
+#event-enter-form .table-events th,
+#table_events th {
+	text-align: center;
+	font-weight: bold;
+}
+
+#btnSubmit {
+	margin-top: 20px;
+	color: white;
+	background: purple;
+	font-size: 22px;
+	padding: 5px 10px;
+	outline: none;
+	border-radius: 10px;
+	font-family: 'Raleway';
+	cursor: pointer;
+}
+
+#btnDelete {
+	margin-top: 20px;
+	color: white;
+	background: red;
+	font-size: 22px;
+	padding: 5px 10px;
+	outline: none;
+	border-radius: 10px;
+	font-family: 'Raleway';
+	cursor: pointer;
+}
+#btnCancel {
+	margin-top: 20px;
+	color: white;
+	background: green;
+	font-size: 22px;
+	padding: 5px 10px;
+	outline: none;
+	border-radius: 10px;
+	font-family: 'Raleway';
+	cursor: pointer;
+}
+#output {
+	margin-top: 20px;
+	font-size: 24px;
+	line-height: 30px;
+	font-family: 'Raleway';
+}
+
+#plugin-info {
+	font-size: 24px;
+	line-height: 30px;
+	font-family: 'Raleway';
+}
+
+#event-enter-form .upload {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+#txt_image {
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+/* LIST EVENTS */
+#table_events button {
+	color: white;
+	font-size: 18px;
+	padding: 5px 10px;
+	outline: none;
+	border-radius: 10px;
+	font-family: 'Raleway';
+	cursor: pointer;
+}
+
+#table_events a.update-event {
+	color: white;
+	font-size: 18px;
+	padding: 5px 10px;
+	outline: none;
+	border-radius: 10px;
+	font-family: 'Raleway';
+	cursor: pointer;
+	background: green;
+}
+#table_events a.delete-event {
+	color: white;
+	font-size: 18px;
+	padding: 5px 10px;
+	outline: none;
+	border-radius: 10px;
+	font-family: 'Raleway';
+	cursor: pointer;
+	background: red;
+}
