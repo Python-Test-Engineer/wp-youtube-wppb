@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       IWS EVENTS-DB
  * Plugin URI:        https://wp-html.co.uk
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plugin uses WP Plugin Boilerplate for and Events List.
  * Version:           1.0.0
  * Author:            Craig West
  * Author URI:        https://wp-html.co.uk

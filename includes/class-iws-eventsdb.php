@@ -200,8 +200,7 @@ class Iws_Eventsdb {
 
 		//$CUSTOM - filter for page template redirect
 		$this->loader->add_filter("page_template", $plugin_public, "our_own_custom_page_template");
-		// Hook for Plugin Action Links
-		$this->loader->add_filter("admin_init", $plugin_public, "our_own_custom_page_template");
+	
 
 	}
 

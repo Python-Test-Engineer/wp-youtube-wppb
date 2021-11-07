@@ -142,6 +142,8 @@ class Iws_Eventsdb_Admin {
 	public function add_plugin_action_links($links){
 		 $mylinks = array(
       '<a href="' . admin_url( 'admin.php?page=event-management-settings' ) . '">Settings</a>',
+			'<a href="' . admin_url( 'admin.php?page=event-management-tool' ) . '">Details</a>',
+
    );
  
    return  array_merge( $links, $mylinks );
