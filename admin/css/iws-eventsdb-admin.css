@@ -15,17 +15,23 @@
 }
 
 #event-enter-form input {
-	font-size: 22px;
+	font-size: 20px;
 	padding: 5px 10px;
 	font-family: 'Raleway';
 }
 
 #event-enter-form label {
-	font-size: 22px;
+	font-size: 20px;
 	font-family: 'Raleway';
 }
 #event-name {
 	width: 500px;
+}
+#event-category {
+	font-size: 20px;
+	height: 50px;
+	width: 200px;
+	padding: 5px;
 }
 #event-enter-form .table-events td,
 #event-enter-form .table-events th,

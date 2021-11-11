@@ -38,10 +38,21 @@
        <p id="error-end-date" class="error"></p>
     </div>
     <label class="" for="event-approved"> <h2 class="text-xl mt-4 mb-4 font-bold">Approved: <input type="checkbox" class="text-xl"  name="event-approved" id="event-approved" /></h2></label>
-    
     <div class="">
-     
        <span id="error-approved" class="error"></span>
+    </div>
+    <div style="display:flex; align-items:center;gap:10px;">
+     <label class="" for="event-selected">
+       <h2 class="text-xl mt-4 mb-4 font-bold">Selected: </h2>
+      </label>
+     <select id="event-category">
+       <option value="0" category>&nbsp;&nbsp;&nbsp;&nbsp;--Select--  </option>
+       <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Standard</option>
+       <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;Premium</option>
+     </select>
+    </div>
+    <div class="">
+       <span id="error-category" class="error"></span>
     </div>
     <!-- 2021-11-22T18:45 -->
     <label class="" for="event-image">
@@ -65,7 +76,8 @@
     nameIsValid: false,
     startIsValid: false,
     endIsValid: false,
-    approvalIsValid: false
+    approvalIsValid: false,
+    categoryIsValid: false
   }
 
   const eventName = document.getElementById('event-name');
@@ -76,6 +88,8 @@
   const errorEnd = document.getElementById('error-end-date');
   const eventApproved = document.getElementById('event-approved');
   const errorApproved = document.getElementById('error-approved');
+  const eventCategory = document.getElementById('event-category');
+  const errorCategory = document.getElementById('error-category');
   const btnSubmit = document.getElementById('btnSubmit');
   const btnImage = document.getElementById('txt_image');
   const eventImage = document.getElementById('event_image');
@@ -138,12 +152,19 @@
      if (!eventApproved.checked) {
       console.log('EMPTY END');
       errorApproved.innerHTML = 'Please get approval';
-      form. approvalIsValid = false;
+      form.approvalIsValid = false;
     } else {
        errorApproved.innerHTML = '';
-       form. approvalIsValid = true;
+       form.approvalIsValid = true;
     }
- 
+    if (eventCategory.value == 0) {
+        console.log('EMPTY END');
+        errorCategory.innerHTML = 'Please select category';
+        form.categorylIsValid = false;
+      } else {
+        errorCategory.innerHTML = '';
+        form.categorylIsValid = true;
+    }
     if (form.nameIsValid && form.startIsValid && form.endIsValid && form.approvalIsValid)  {
       const nonceValue = '<?php  echo wp_create_nonce('wp_rest'); ?>'; // ! must be wp_rest
       // console.log("form nonceValue via PHP: " + nonceValue);
