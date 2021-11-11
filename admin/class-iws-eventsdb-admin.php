@@ -200,7 +200,7 @@ class Iws_Eventsdb_Admin {
 				<?php 
 					global $wpdb;
 					$table ='01_iws_tbl_events';
-					$events =  $wpdb->get_results("SELECT * FROM $table ORDER BY event_id DESC", ARRAY_A);
+					$events =  $wpdb->get_results("SELECT * FROM $table WHERE is_active = 1 ORDER BY event_id DESC", ARRAY_A);
 					// echo '<pre>';
 					// var_dump($events);
 					// echo '</pre>';

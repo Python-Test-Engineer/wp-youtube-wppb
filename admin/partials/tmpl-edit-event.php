@@ -17,7 +17,7 @@
 		// 	"SELECT * FROM 01_iws_tbl_events WHERE event_id = 72", ARRAY_A
 		// );
     $event_data =$wpdb->get_row(
-			$wpdb->prepare("SELECT * FROM 01_iws_tbl_events WHERE event_id =  %d", $id, ARRAY_A)
+			$wpdb->prepare("SELECT * FROM 01_iws_tbl_events WHERE event_id =  %d  ", $id, ARRAY_A)
 		);
     echo $event_data->event_name;
     echo test();

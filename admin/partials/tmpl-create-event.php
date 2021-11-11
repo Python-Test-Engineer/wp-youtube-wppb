@@ -38,9 +38,22 @@
        <p id="error-end-date" class="error"></p>
     </div>
     <label class="" for="event-approved"> <h2 class="text-xl mt-4 mb-4 font-bold">Approved: <input type="checkbox" class="text-xl"  name="event-approved" id="event-approved" /></h2></label>
-    <div class="">
+     <div class="">
        <span id="error-approved" class="error"></span>
     </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+    <label class="" for="event-size"> <h2 class="text-xl mt-4 mb-4  font-bold">
+      <h2>Size: </h2>
+    </label>
+    <div id="radio-size">
+      <input type="radio" name="event-size"  value="small" id="size-small"/>small
+      <input type="radio" name="event-size"  value="large"  id="size-large"/>large
+      </div>
+    </div>
+    <div class="">
+       <span id="error-size" class="error"></span>
+    </div>
+   
     <div style="display:flex; align-items:center;gap:10px;">
      <label class="" for="event-selected">
        <h2 class="text-xl mt-4 mb-4 font-bold">Selected: </h2>
@@ -77,7 +90,8 @@
     startIsValid: false,
     endIsValid: false,
     approvalIsValid: false,
-    categoryIsValid: false
+    categoryIsValid: false,
+    sizeIsValid: false
   }
 
   const eventName = document.getElementById('event-name');
@@ -90,6 +104,9 @@
   const errorApproved = document.getElementById('error-approved');
   const eventCategory = document.getElementById('event-category');
   const errorCategory = document.getElementById('error-category');
+  const eventSizeSmall = document.getElementById('size-small'); 
+  const eventSizeLarge = document.getElementById('size-large'); 
+  const errorSize = document.getElementById('error-size');
   const btnSubmit = document.getElementById('btnSubmit');
   const btnImage = document.getElementById('txt_image');
   const eventImage = document.getElementById('event_image');
@@ -126,46 +143,51 @@
   function handleSubmit(e){
 
     if (eventName.value == '') {
-      console.log('EMPTY NAME');
       form.nameIsValid = false;
       errorName.innerHTML = 'Please enter a name';
     } else {
        errorName.innerHTML = '';
-        form.nameIsValid = true;
+      form.nameIsValid = true;
     }
     if (eventStart.value == '') {
-      console.log('EMPTY START');
       errorStart.innerHTML = 'Please enter a start date';
-       form.startIsValid = false;
+      form.startIsValid = false;
     } else {
       errorStart.innerHTML = '';
       form.startIsValid = true;
     }
     if (eventEnd.value == '') {
-      console.log('EMPTY END');
       errorEnd.innerHTML = 'Please enter an end date';
       form.endIsValid = false;
     } else {
-       errorEnd.innerHTML = '';
-       form.endIsValid = true;
+      errorEnd.innerHTML = '';
+      form.endIsValid = true;
     }
-     if (!eventApproved.checked) {
-      console.log('EMPTY END');
+    if (!eventApproved.checked) {
       errorApproved.innerHTML = 'Please get approval';
       form.approvalIsValid = false;
     } else {
        errorApproved.innerHTML = '';
        form.approvalIsValid = true;
     }
-    if (eventCategory.value == 0) {
-        console.log('EMPTY END');
-        errorCategory.innerHTML = 'Please select category';
-        form.categorylIsValid = false;
-      } else {
-        errorCategory.innerHTML = '';
-        form.categorylIsValid = true;
+    
+    if (eventSizeSmall.checked || eventSizeLarge.checked ) {
+       errorSize.innerHTML = '';
+       form.sizeIsValid = true;
+    } else {
+      errorSize.innerHTML = 'Please select size';
+      form.sizeIsValid = false;
     }
-    if (form.nameIsValid && form.startIsValid && form.endIsValid && form.approvalIsValid)  {
+    if (eventCategory.value == 0) {
+       
+      errorCategory.innerHTML = 'Please select category';
+      form.categoryIsValid = false;
+    } else {
+      errorCategory.innerHTML = '';
+      form.categoryIsValid = true;
+    }
+    
+    if (form.nameIsValid && form.startIsValid && form.endIsValid && form.approvalIsValid && form.categoryIsValid && form.sizeIsValid)  {
       const nonceValue = '<?php  echo wp_create_nonce('wp_rest'); ?>'; // ! must be wp_rest
       // console.log("form nonceValue via PHP: " + nonceValue);
 
@@ -193,6 +215,9 @@
               const output = document.getElementById('output');
               output.innerHTML = '<div class="">' + JSON.stringify(data) + '</div>';
           });
+    }
+    else {
+      console.log('FORM INVALID')
     }
   }
 </script>

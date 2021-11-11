@@ -33,6 +33,9 @@
 	width: 200px;
 	padding: 5px;
 }
+#radio-size {
+	font-size: 20px;
+}
 #event-enter-form .table-events td,
 #event-enter-form .table-events th,
 #table_events td,
