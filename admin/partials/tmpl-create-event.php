@@ -4,7 +4,18 @@
  echo $default_image;
 
 ?>
-
+<style>
+  .error {
+    color: red;
+    font-family: inherit;
+    font-size:16px;
+   
+  }
+  p {
+    padding:0;
+    margin:0;
+  }
+</style>
 <div class="" id="event-enter-form">
   <form class="" method="" action="" id="frm-create-event">
   
@@ -12,18 +23,27 @@
     <h2 class="">Event Name:</h2></label>
     <div class="">
       <input type="text"  class="" placeholder="Event name..." id="event-name" />
-     
+      <p id="error-name" class="error"></p>
     </div>
     <label class="" for="event-start-date">
     <h2 class="text-xl mt-4 mb-4 font-bold">Start Date:</h2></label>
     <div class="">
-      <input type="datetime-local" value="2021-10-01T13:09" class="text-xl" placeholder="Start date..." name="event-start-date" id="event-start-date" />
+      <input type="datetime-local" value="" class="text-xl" placeholder="Start date..." name="event-start-date" id="event-start-date" />
+       <p id="error-start-date" class="error"></p>
     </div>
     <label class="" for="event-end-date">
     <h2 class="text-xl mt-4 mb-4 font-bold">End Date:</h2></label>
     <div class="">
-      <input type="datetime-local" value="2021-11-22T18:45"  class="text-xl" placeholder="end date..." name="event-end-date" id="event-end-date" />
+      <input type="datetime-local" value=""  class="text-xl" placeholder="end date..." name="event-end-date" id="event-end-date" />
+       <p id="error-end-date" class="error"></p>
     </div>
+    <label class="" for="event-approved"> <h2 class="text-xl mt-4 mb-4 font-bold">Approved: <input type="checkbox" class="text-xl"  name="event-approved" id="event-approved" /></h2></label>
+    
+    <div class="">
+     
+       <span id="error-approved" class="error"></span>
+    </div>
+    <!-- 2021-11-22T18:45 -->
     <label class="" for="event-image">
     <h2 class="">Event Image:</h2></label>
     <div class="upload">
@@ -40,9 +60,22 @@
 
 <script>
 
+  const form = {
+    formIsValid: false,
+    nameIsValid: false,
+    startIsValid: false,
+    endIsValid: false,
+    approvalIsValid: false
+  }
+
   const eventName = document.getElementById('event-name');
+  const errorName = document.getElementById('error-name');
   const eventStart = document.getElementById('event-start-date');
+  const errorStart = document.getElementById('error-start-date');
   const eventEnd = document.getElementById('event-end-date');
+  const errorEnd = document.getElementById('error-end-date');
+  const eventApproved = document.getElementById('event-approved');
+  const errorApproved = document.getElementById('error-approved');
   const btnSubmit = document.getElementById('btnSubmit');
   const btnImage = document.getElementById('txt_image');
   const eventImage = document.getElementById('event_image');
@@ -78,34 +111,68 @@
 
   function handleSubmit(e){
 
+    if (eventName.value == '') {
+      console.log('EMPTY NAME');
+      form.nameIsValid = false;
+      errorName.innerHTML = 'Please enter a name';
+    } else {
+       errorName.innerHTML = '';
+        form.nameIsValid = true;
+    }
+    if (eventStart.value == '') {
+      console.log('EMPTY START');
+      errorStart.innerHTML = 'Please enter a start date';
+       form.startIsValid = false;
+    } else {
+      errorStart.innerHTML = '';
+      form.startIsValid = true;
+    }
+    if (eventEnd.value == '') {
+      console.log('EMPTY END');
+      errorEnd.innerHTML = 'Please enter an end date';
+      form.endIsValid = false;
+    } else {
+       errorEnd.innerHTML = '';
+       form.endIsValid = true;
+    }
+     if (!eventApproved.checked) {
+      console.log('EMPTY END');
+      errorApproved.innerHTML = 'Please get approval';
+      form. approvalIsValid = false;
+    } else {
+       errorApproved.innerHTML = '';
+       form. approvalIsValid = true;
+    }
+ 
+    if (form.nameIsValid && form.startIsValid && form.endIsValid && form.approvalIsValid)  {
+      const nonceValue = '<?php  echo wp_create_nonce('wp_rest'); ?>'; // ! must be wp_rest
+      // console.log("form nonceValue via PHP: " + nonceValue);
 
-    const nonceValue = '<?php  echo wp_create_nonce('wp_rest'); ?>'; // ! must be wp_rest
-    // console.log("form nonceValue via PHP: " + nonceValue);
-
-     // Use HTML FormData object enable the endpoint to get POST data
-    const formData = new FormData();
-    formData.append('_wpnonce', nonceValue); 
-    formData.append('eventName', eventName.value);
-    formData.append('eventStartDate', eventStart.value);
-    formData.append('eventEndDate', eventEnd.value); // to demonstrate additional hidden fields
-    formData.append('imageUrl', imageUrl);
-    console.log(formData)
-    // const siteUrl = 'http://localhost/wp-youtube-wppb';
-    const siteUrl = siteObj.siteUrl;
-    console.log('siteUrl', siteUrl)
-    fetch(siteUrl + '/wp-json/iws-eventsdb/v1/add-event', {
-            method: 'POST', // set FETCH type GET/POST
-            body: formData  // append form data
-        })
-        .then(function (response) {
-            // console.log(response);
-            return response.json(); // convert stream response to text
-        })
-        .then(function (data) {
-            console.log(data);
-            const output = document.getElementById('output');
-            output.innerHTML = '<div class="">' + JSON.stringify(data) + '</div>';
-        });
+      // Use HTML FormData object enable the endpoint to get POST data
+      const formData = new FormData();
+      formData.append('_wpnonce', nonceValue); 
+      formData.append('eventName', eventName.value);
+      formData.append('eventStartDate', eventStart.value);
+      formData.append('eventEndDate', eventEnd.value); // to demonstrate additional hidden fields
+      formData.append('imageUrl', imageUrl);
+      console.log(formData)
+      // const siteUrl = 'http://localhost/wp-youtube-wppb';
+      const siteUrl = siteObj.siteUrl;
+      console.log('siteUrl', siteUrl)
+      fetch(siteUrl + '/wp-json/iws-eventsdb/v1/add-event', {
+              method: 'POST', // set FETCH type GET/POST
+              body: formData  // append form data
+          })
+          .then(function (response) {
+              // console.log(response);
+              return response.json(); // convert stream response to text
+          })
+          .then(function (data) {
+              console.log(data);
+              const output = document.getElementById('output');
+              output.innerHTML = '<div class="">' + JSON.stringify(data) + '</div>';
+          });
+    }
   }
 </script>
 
