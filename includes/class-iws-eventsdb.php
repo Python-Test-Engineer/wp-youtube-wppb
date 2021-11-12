@@ -175,7 +175,8 @@ class Iws_Eventsdb {
 			'plugin_action_links_' . plugin_basename(EVENTSDB_MANAGEMENT_TOOL_PLUGIN_BASEFILE), 
 			$plugin_admin, 
 			'add_plugin_action_links');
-		
+			
+		// $CUSTOM
 		// Create rest routes for admin/create-event etc
 		$plugin_admin_rest = new Iws_Eventsdb_Admin_Rest( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'rest_api_init', $plugin_admin_rest, 'create_rest_routes_get' );
