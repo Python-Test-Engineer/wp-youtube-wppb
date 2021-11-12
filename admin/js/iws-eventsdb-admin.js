@@ -1,3 +1,5 @@
+// Built in file to boilerplate but jQuery replaced with JS.
+
 (function () {
 	window.onload = (event) => {
 		// get querystring from wp-plugins/wp-admin/admin.php?page=event-management-list-event
