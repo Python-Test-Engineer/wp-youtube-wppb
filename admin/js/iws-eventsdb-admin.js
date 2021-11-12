@@ -38,5 +38,5 @@ function handleAction(e) {
 		console.log(`%cdo delete...${id}`, 'color:red;font-size:18px;');
 	}
 
-	// using REST API we can carry out CRUD on MySQL table and either reload page or use DOM methods to update table on succes of CRUF.
+	// using REST API we can carry out CRUD on MySQL table and either reload page or use DOM methods to update table on succes of CRUD.
 }
