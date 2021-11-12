@@ -4,14 +4,19 @@
 
 		var urlParams = new URLSearchParams(window.location.search);
 		const page = urlParams.get('page');
-		console.log(page);
+		// console.log('iws-events-admin.js', page);
+
 		// if we are on event-management-list-event then we can
 		// avoid console errors if another page is loaded and dom element not present
 		// create one event listener on table and get id by event bubbling
 		// otherwise have to remove many eventlisteners or meory leak may occur.
 		if (page == 'event-management-list-event') {
+			debugInfo('IF admin page determination for LIST');
 			const tableEvents = document.getElementById('table_events');
 			tableEvents.addEventListener('click', handleAction);
+		}
+		if (page == 'event-management-create-event') {
+			debugInfo('IF admin page determination for CREATE');
 		}
 	};
 })();

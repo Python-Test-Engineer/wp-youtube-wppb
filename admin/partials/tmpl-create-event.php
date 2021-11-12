@@ -142,6 +142,8 @@
 
   function handleSubmit(e){
 
+    debugInfo('in handle submit CREATE')
+
     if (eventName.value == '') {
       form.nameIsValid = false;
       errorName.innerHTML = 'Please enter a name';

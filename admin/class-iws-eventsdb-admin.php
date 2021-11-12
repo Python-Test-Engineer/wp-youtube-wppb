@@ -95,8 +95,12 @@ class Iws_Eventsdb_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-admin.js', array(), $this->version, false ); 
+		// can avoid jQuery - in this example we use JS - normally array('jQuery') would be used but in this plugin it is set to null
 		
+		// Register and enqueue scripts in admin/js - these can be helper functions that can then be called elsewhere, for example in partials/create-event.php we can refactor validate JS into other JS files
+		wp_register_script( 'forms', plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-forms.js');
+		wp_enqueue_script( 'forms', plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-forms.js', array( ), $this->version, true );
 
 	}
 	
@@ -125,9 +129,11 @@ class Iws_Eventsdb_Admin {
 		add_submenu_page(null,"Delete Event", "Delete Event", "manage_options", "event-management-delete-event", array($this, "event_management_delete_event"));
 		add_submenu_page("event-management-tool","Settings", "Settings", "manage_options", "event-management-settings", array($this, "event_management_settings"));
 
+	
 		// wp_localize_script needs to be linked to an enqueued js file
 		wp_register_script( 'wp-rest', plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-admin.js');
 		wp_enqueue_script( 'wp-rest', plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-admin.js');
+	
 
 		wp_localize_script( 'wp-rest', 'siteObj',
 				array( 

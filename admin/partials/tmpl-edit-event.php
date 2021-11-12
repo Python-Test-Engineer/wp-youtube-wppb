@@ -80,6 +80,7 @@
 </div>
 
 <script>
+
  
   const eventId = document.getElementById('event-id');
   const eventName = document.getElementById('event-name');
@@ -130,6 +131,8 @@
   btnSubmit.addEventListener('click', handleSubmit)
 
   function handleSubmit(e){
+     debugInfo('%cIn tmpl-edit-event.php handleSubmit()', 'color:green')
+ 
   
     const nonceValue = '<?php  echo wp_create_nonce('wp_rest'); ?>'; // ! must be wp_rest
     // console.log("form nonceValue via PHP: " + nonceValue);
