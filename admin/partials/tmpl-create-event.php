@@ -17,6 +17,10 @@
   }
 </style>
 <div class="" id="event-enter-form">
+ 
+  <?php
+      echo validateFormHelper();
+   ?>
   <form class="" method="" action="" id="frm-create-event">
   
     <label class="" for="dd_event_name">

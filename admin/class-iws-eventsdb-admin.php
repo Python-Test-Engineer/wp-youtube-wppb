@@ -178,6 +178,9 @@ class Iws_Eventsdb_Admin {
 	public function event_management_dashboard(){
 
 		echo "<h1>Welcome to Plugin Dashboard</h1>";
+		// fn in helpers-admin.php
+		echo helpersAdmin();
+
 	}	
 	// List Events sub-page
 	public function event_management_list_event(){ 
