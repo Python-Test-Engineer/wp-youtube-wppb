@@ -118,6 +118,8 @@
 }
 
 #table_events a.update-event {
+	display: inline-block;
+	width: 120px;
 	color: white;
 	font-size: 18px;
 	padding: 5px 10px;
@@ -128,6 +130,8 @@
 	background: green;
 }
 #table_events a.delete-event {
+	display: inline-block;
+	width: 120px;
 	color: white;
 	font-size: 18px;
 	padding: 5px 10px;
