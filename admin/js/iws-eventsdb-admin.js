@@ -22,6 +22,7 @@
 })();
 
 function handleAction(e) {
+	debugInfo('in handleAction iws-eventsdb-admin.js', 'orange');
 	const id = e.target.dataset.id;
 	const action = e.target.dataset.action;
 	console.log('%cListEvents', 'color:orange;font-size:18px;font-weight:bold');

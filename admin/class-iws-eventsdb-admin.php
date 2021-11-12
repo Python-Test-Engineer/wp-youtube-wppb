@@ -124,10 +124,13 @@ class Iws_Eventsdb_Admin {
 		add_submenu_page("event-management-tool","Create Event", "Create Event", "manage_options", "event-management-create-event", array($this, "event_management_create_event"));
 
 		add_submenu_page("event-management-tool","List Events", "List Events", "manage_options", "event-management-list-event", array($this, "event_management_list_event"));
-		// add edit sub-menu page but don't list - set parent to null
+
+		add_submenu_page("event-management-tool","Settings", "Settings", "manage_options", "event-management-settings", array($this, "event_management_settings"));
+
+		// add sub-menu page but don't list - set parent to null
 		add_submenu_page(null,"Edit Event", "Edit Event", "manage_options", "event-management-edit-event", array($this, "event_management_edit_event"));
 		add_submenu_page(null,"Delete Event", "Delete Event", "manage_options", "event-management-delete-event", array($this, "event_management_delete_event"));
-		add_submenu_page("event-management-tool","Settings", "Settings", "manage_options", "event-management-settings", array($this, "event_management_settings"));
+	
 
 	
 		// wp_localize_script needs to be linked to an enqueued js file

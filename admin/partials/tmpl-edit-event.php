@@ -20,7 +20,6 @@
 			$wpdb->prepare("SELECT * FROM 01_iws_tbl_events WHERE event_id =  %d  ", $id, ARRAY_A)
 		);
     echo $event_data->event_name;
-    echo test();
 		echo "<pre>";
 		print_r($event_data);
 		echo "</pre>";
