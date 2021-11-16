@@ -369,10 +369,11 @@ class Iws_Eventsdb_Admin {
 		 */
 		public function plugin_menu_settings_using_helper() {
 
-			require_once IWS_EVENTSDB_BASE_DIR . 'vendor/boo-settings-helper/class-boo-settings-helper.php';
+		require_once IWS_EVENTSDB_BASE_DIR . 'vendor/boo-settings-helper/class-boo-settings-helper.php';
 
 		$iws_eventsdb_settings = array(
 		'tabs'     => true,
+		'prefix'   => 'iws_',
 		'menu'     =>
 			array(
 				'page_title' => __( 'IWS EVENTSDB Settings', 'iws-eventsdb' ),
@@ -403,7 +404,7 @@ class Iws_Eventsdb_Admin {
 		'fields'   => array(
 			'general_section' => array(
 				array(
-					'id'    => 'text_field_id',
+					'id'    => 'iws_text_field_id',
 					'label' => __( 'Text Field', 'iws-eventsdb' ),
 				),
 				array(

@@ -28,4 +28,8 @@
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
+// Delete options 
+// SELECT * FROM `boiler_options` WHERE `option_name` LIKE'iws_%';
+// DELETE FROM `boiler_options` WHERE `option_name` LIKE 'iws_%'
+
 }
