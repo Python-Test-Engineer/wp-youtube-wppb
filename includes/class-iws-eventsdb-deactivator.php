@@ -37,7 +37,7 @@ class Iws_Eventsdb_Deactivator {
 		
 		$wpdb->query(
 			$wpdb->prepare(
-				"DELETE FROM boiler_posts WHERE post_name IN ('react','svelte-app','js-app')"
+				"DELETE FROM $table_name WHERE post_name IN ('react','svelte-app','js-app')"
 				)
 			);
 	
