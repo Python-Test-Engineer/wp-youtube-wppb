@@ -35,17 +35,17 @@ class Iws_Eventsdb_Activator {
 		// $CUSTOM - empty initially
 	 
 		self::create_table();
-		self::insert_initial_data();
-		
 		global $wpdb;
 		
 		// create page on plugin activation
 		// wp_posts
 		$get_data =$wpdb->get_row(
 			$wpdb->prepare(
-				"SELECT * from ".$wpdb->prefix."posts WHERE post_name = %s", 'event-tool'
+				"SELECT post_name from ".$wpdb->prefix."posts WHERE post_name = %s", 'react'
 			)
 		);
+		// var_dump($get_data);
+		// die;
 
 		if(!empty($get_data)){
 			// already we have data with this post name
@@ -103,15 +103,11 @@ class Iws_Eventsdb_Activator {
 
 	}
 
-
-
-
-
 	public static function create_table(){
 		
 		global $wpdb;
     	$charset = $wpdb->get_charset_collate();
-        $tablename =  "01_iws_tbl_events";
+      $tablename =  "01_iws_tbl_events";
 	
  		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		 
@@ -121,15 +117,10 @@ class Iws_Eventsdb_Activator {
                 `event_start_date` DATETIME NOT NULL , 
                 `event_end_date` DATETIME NOT NULL,
 								`event_image` varchar(1000)  DEFAULT NULL,
+						  	`is_active` tinyint(4) NOT NULL DEFAULT 1,
+
                 PRIMARY KEY (`event_id`)
             ) $charset;");
-
-
-	}
-
-
-	public static function insert_initial_data(){
-
 		$rnd = rand(200,300);
 		$event_name = "ACT-TEST-${rnd}";
 	
@@ -140,8 +131,11 @@ class Iws_Eventsdb_Activator {
 
 		 $query = "INSERT INTO `01_iws_tbl_events` (`event_id`, `event_name`, `event_start_date`, `event_end_date`,`event_image`) VALUES (NULL, '".$event_name."', '2021-12-09 08:35:16.000000', '2021-12-22 09:35:16.000000', '{$event_image}')";
   
-        global $wpdb;
+       
         $wpdb->query($query);
+
 	}
+
+
 
 }

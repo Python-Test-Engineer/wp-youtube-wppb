@@ -175,7 +175,7 @@ class Iws_Eventsdb_Admin {
 		// these are custom functions declared later in file
 		$this->event_management_dashboard();
 		$this->sample_wpdb();
-		$this->sample_prepare_wpdb();
+		// $this->sample_prepare_wpdb();
 		
 	}
 

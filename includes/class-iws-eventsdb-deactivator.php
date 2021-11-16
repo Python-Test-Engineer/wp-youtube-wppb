@@ -32,11 +32,14 @@ class Iws_Eventsdb_Deactivator {
 	public static function deactivate() {
 		 // delete pages when plugin deactivates
 		global $wpdb;
-
- 		$table = 'plugins_posts';
-    $wpdb->delete( $table, array( 'post_title' => 'REACT') );
-    $wpdb->delete( $table, array( 'post_title' => 'SVELTE') );
-    $wpdb->delete( $table, array( 'post_title' => 'JS') );
+ 	
+		$table_name = $wpdb->prefix . 'posts';
+		
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM boiler_posts WHERE post_name IN ('react','svelte-app','js-app')"
+				)
+			);
 	
 	}
 }
