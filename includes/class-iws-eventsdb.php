@@ -163,6 +163,8 @@ class Iws_Eventsdb {
 		$plugin_admin = new Iws_Eventsdb_Admin( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_menu',	$plugin_admin,'plugin_menu_settings_using_helper');
+		
 	
 	
 		

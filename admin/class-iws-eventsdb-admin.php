@@ -112,7 +112,7 @@ class Iws_Eventsdb_Admin {
 	// $CUSTOM
 	
 	// the main hook called in class-iws-eventdb.admin.php
-	// it uses many functions listed below in event_manage,emt_menu
+	// it uses many functions listed below in event_managememt_menu
  
 	public function event_management_menu(){
 
@@ -137,7 +137,7 @@ class Iws_Eventsdb_Admin {
 		// wp_localize_script needs to be linked to an enqueued js file
 		wp_register_script( 'wp-rest', plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-admin.js');
 		wp_enqueue_script( 'wp-rest', plugin_dir_url( __FILE__ ) . 'js/iws-eventsdb-admin.js');
-	
+
 
 		wp_localize_script( 'wp-rest', 'siteObj',
 				array( 
@@ -167,7 +167,9 @@ class Iws_Eventsdb_Admin {
 			echo "<h1>Settings</h1>";
 	}
 
-
+	public function event_management_options(){
+			echo "<h1>OPTIONS</h1>";
+	}
 	// Dashboard sub-menu page
 
  public function event_management_plugin(){
@@ -354,5 +356,98 @@ class Iws_Eventsdb_Admin {
 			);
 		
 	}
+
+		/**
+		 * To add Plugin Menu and Settings page
+		 */
+		public function plugin_menu_settings_using_helper() {
+
+			require_once IWS_EVENTSDB_BASE_DIR . 'vendor/boo-settings-helper/class-boo-settings-helper.php';
+
+		$iws_eventsdb_settings = array(
+		'tabs'     => true,
+		'menu'     =>
+			array(
+				'page_title' => __( 'IWS EVENTSDB Settings', 'plugin-name' ),
+				'menu_title' => __( 'OPTIONS', 'plugin-name' ),
+				'slug'       => 'event-management-settings',
+				'capability' => 'manage_options',
+			
+				'icon'       => 'dashicons-performance',
+				// 'position'   => 10,
+				 'parent'     => 'admin.php?page=event-management-tool',
+				'submenu'    => true,
+			),
+
+		'sections' =>
+			array(
+				array(
+					'id'    => 'general_section',
+					'title' => __( 'General Settings', 'plugin-name' ),
+					'desc'  => __( 'These are general settings for Plugin Name', 'plugin-name' ),
+				),
+				array(
+					'id'    => 'advance_section',
+					'title' => __( 'Advanced Settings', 'plugin-name' ),
+					'desc'  => __( 'These are advance settings for Plugin Name', 'plugin-name' )
+				)
+			),
+		'fields'   => array(
+			'general_section' => array(
+				array(
+					'id'    => 'text_field_id',
+					'label' => __( 'Text Field', 'plugin-name' ),
+				),
+				array(
+					'id'    => 'color_field_id',
+					'label' => __( 'Color Field', 'plugin-name' ),
+					'type'  => 'color',
+				),
+				array(
+					'id'      => 'radio_field_id',
+					'label'   => __( 'Radio Button', 'plugin-name' ),
+					'desc'    => __( 'A radio button', 'plugin-name' ),
+					'type'    => 'radio',
+					'options' => array(
+						'radio_1' => 'Radio 1',
+						'radio_2' => 'Radio 2',
+						'radio_3' => 'Radio 3'
+					),
+					'default' => 'radio_2',
+				),
+				array(
+					'id'      => 'select_field_id',
+					'label'   => __( 'A Dropdown Select', 'plugin-name' ),
+					'desc'    => __( 'Dropdown description', 'plugin-name' ),
+					'type'    => 'select',
+					'default' => 'option_2',
+					'options' => array(
+						'option_1' => 'Option 1',
+						'option_2' => 'Option 2',
+						'option_3' => 'Option 3'
+					),
+				),
+			),
+			'advance_section' => array(
+				array(
+					'id'                => 'adv_text_field_id',
+					'label'             => __( 'Another Text', 'plugin-name' ),
+					'desc'              => __( 'with sanitize callback "sanitize_title"', 'plugin-name' ),
+					'placeholder'       => __( 'Text Input placeholder', 'plugin-name' ),
+					'type'              => 'text',
+					'default'           => '',
+					'sanitize_callback' => 'sanitize_title'
+				)
+			)
+		),
+		// 'links'    => array(
+		// 	'plugin_basename' => plugin_basename( __FILE__ ),
+		// 	'action_links'    => true,
+		// ),
+	);
+
+			new Boo_Settings_Helper( $iws_eventsdb_settings );
+
+		}
 
 }
