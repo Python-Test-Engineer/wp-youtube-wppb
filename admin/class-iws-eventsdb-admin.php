@@ -126,6 +126,8 @@ class Iws_Eventsdb_Admin {
 
 		add_submenu_page("event-management-tool","List Events", "List Events", "manage_options", "event-management-list-event", array($this, "event_management_list_event"));
 
+		add_submenu_page("event-management-tool","Options", "Options", "manage_options", "event-management-options", array($this, "event_management_options"));
+
 		add_submenu_page("event-management-tool","Settings", "Settings", "manage_options", "event-management-settings", array($this, "event_management_settings"));
 
 		// add sub-menu page but don't list - set parent to null
@@ -151,7 +153,7 @@ class Iws_Eventsdb_Admin {
 	// Add links to plugin in Plugin dashboard
 	public function add_plugin_action_links($links){
 		 $mylinks = array(
-      '<a href="' . admin_url( 'admin.php?page=event-management-settings' ) . '">Settings</a>',
+      '<a href="' . admin_url( 'options-general.php?page=event-management-options' ) . '">Settings</a>',
 			'<a href="' . admin_url( 'admin.php?page=event-management-tool' ) . '">Details</a>',
 
    );
@@ -165,10 +167,12 @@ class Iws_Eventsdb_Admin {
 
 	public function event_management_settings(){
 			echo "<h1>Settings</h1>";
+			$this->plugin_menu_settings_using_helper();
 	}
 
 	public function event_management_options(){
 			echo "<h1>OPTIONS</h1>";
+			
 	}
 	// Dashboard sub-menu page
 
@@ -188,6 +192,9 @@ class Iws_Eventsdb_Admin {
 		echo helpersAdmin();
 
 	}	
+		public function event_management_list_event2(){
+			echo 'TEST';
+		 }
 	// List Events sub-page
 	public function event_management_list_event(){ 
 		$admin_url = admin_url();
@@ -368,14 +375,15 @@ class Iws_Eventsdb_Admin {
 		'tabs'     => true,
 		'menu'     =>
 			array(
-				'page_title' => __( 'IWS EVENTSDB Settings', 'plugin-name' ),
-				'menu_title' => __( 'OPTIONS', 'plugin-name' ),
-				'slug'       => 'event-management-settings',
+				'page_title' => __( 'IWS EVENTSDB Settings', 'iws-eventsdb' ),
+				'menu_title' => __( 'EVENTSDB OPTIONS', 'iws-eventsdb' ),
+				'slug'       => 'event-management-options',
 				'capability' => 'manage_options',
 			
-				'icon'       => 'dashicons-performance',
-				// 'position'   => 10,
-				 'parent'     => 'admin.php?page=event-management-tool',
+				'icon'       => 'dashicons-admin-site-alt',
+				'position'   => 1,
+				// 'parent'     => 'options-general.php',
+				'parent'     => 'admin.php?page=event-management-tool)',
 				'submenu'    => true,
 			),
 
@@ -383,30 +391,30 @@ class Iws_Eventsdb_Admin {
 			array(
 				array(
 					'id'    => 'general_section',
-					'title' => __( 'General Settings', 'plugin-name' ),
-					'desc'  => __( 'These are general settings for Plugin Name', 'plugin-name' ),
+					'title' => __( 'General Settings', 'iws-eventsdb' ),
+					'desc'  => __( 'These are general settings for Plugin Name', 'iws-eventsdb' ),
 				),
 				array(
 					'id'    => 'advance_section',
-					'title' => __( 'Advanced Settings', 'plugin-name' ),
-					'desc'  => __( 'These are advance settings for Plugin Name', 'plugin-name' )
+					'title' => __( 'Advanced Settings', 'iws-eventsdb' ),
+					'desc'  => __( 'These are advance settings for Plugin Name', 'iws-eventsdb' )
 				)
 			),
 		'fields'   => array(
 			'general_section' => array(
 				array(
 					'id'    => 'text_field_id',
-					'label' => __( 'Text Field', 'plugin-name' ),
+					'label' => __( 'Text Field', 'iws-eventsdb' ),
 				),
 				array(
 					'id'    => 'color_field_id',
-					'label' => __( 'Color Field', 'plugin-name' ),
+					'label' => __( 'Color Field', 'iws-eventsdb' ),
 					'type'  => 'color',
 				),
 				array(
 					'id'      => 'radio_field_id',
-					'label'   => __( 'Radio Button', 'plugin-name' ),
-					'desc'    => __( 'A radio button', 'plugin-name' ),
+					'label'   => __( 'Radio Button', 'iws-eventsdb' ),
+					'desc'    => __( 'A radio button', 'iws-eventsdb' ),
 					'type'    => 'radio',
 					'options' => array(
 						'radio_1' => 'Radio 1',
@@ -440,10 +448,10 @@ class Iws_Eventsdb_Admin {
 				)
 			)
 		),
-		// 'links'    => array(
-		// 	'plugin_basename' => plugin_basename( __FILE__ ),
-		// 	'action_links'    => true,
-		// ),
+		'links'    => array(
+			'plugin_basename' => plugin_basename( __FILE__ ),
+			'action_links'    => true,
+		),
 	);
 
 			new Boo_Settings_Helper( $iws_eventsdb_settings );
