@@ -377,7 +377,7 @@ class Iws_Eventsdb_Admin {
 				'capability' => 'manage_options',
 			
 				'icon'       => 'dashicons-admin-site-alt',
-				'position'   => 1,
+				'position'   => 90,
 				// 'parent'     => 'options-general.php',
 				'parent'     => 'admin.php?page=event-management-tool',
 				'submenu'    => true,
