@@ -128,7 +128,7 @@ class Iws_Eventsdb_Admin {
 
 		add_submenu_page("event-management-tool","Options", "Options", "manage_options", "event-management-options", array($this, "event_management_options"));
 
-		add_submenu_page("event-management-tool","Settings", "Settings", "manage_options", "event-management-settings", array($this, "event_management_settings"));
+	
 
 		// add sub-menu page but don't list - set parent to null
 		add_submenu_page(null,"Edit Event", "Edit Event", "manage_options", "event-management-edit-event", array($this, "event_management_edit_event"));
@@ -165,10 +165,7 @@ class Iws_Eventsdb_Admin {
 
 	// Settings page
 
-	public function event_management_settings(){
-			echo "<h1>Settings</h1>";
-			$this->plugin_menu_settings_using_helper();
-	}
+
 
 	public function event_management_options(){
 			echo "<h1>OPTIONS</h1>";
@@ -192,9 +189,7 @@ class Iws_Eventsdb_Admin {
 		echo helpersAdmin();
 
 	}	
-		public function event_management_list_event2(){
-			echo 'TEST';
-		 }
+
 	// List Events sub-page
 	public function event_management_list_event(){ 
 		$admin_url = admin_url();
