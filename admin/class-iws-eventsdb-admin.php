@@ -186,7 +186,12 @@ class Iws_Eventsdb_Admin {
 
 		echo "<h1>Welcome to Plugin Dashboard</h1>";
 		// fn in helpers-admin.php
-		echo helpersAdmin();
+		echo helpersAdmin();	
+		$admin_url = admin_url();
+		echo $admin_url.'<br>';
+		$settings_page = $admin_url.'admin.php?page=event-management-options';
+		echo "<h1>Setting page: <a href=$settings_page>here...</a></h1>";
+	
 
 	}	
 
