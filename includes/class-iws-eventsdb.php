@@ -99,7 +99,11 @@ class Iws_Eventsdb {
 	 */
 	private function load_dependencies() {
 
-		/** $CUSTOM php files that we can load in. */
+		/** 
+		* $CUSTOM php files that we can load in. 
+		* They can also be placed at tip of class files they are used in as well but if used
+		* in many files it would not be DRY.
+		*/
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/helpers.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/helpers-admin.php';
 
